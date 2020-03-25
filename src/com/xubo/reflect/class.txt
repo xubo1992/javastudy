@@ -1,0 +1,2 @@
+classname = com.xubo.reflect.Student
+methodname = sayHi
