@@ -11,40 +11,40 @@ import java.net.Socket;
 
 public class Client {
 		
-	//»ñÈ¡´úÀí·şÎñ¶Ë½Ó¿ÚµÄ¶¯Ì¬´úÀí¶ÔÏó
+	//è·å–ä»£ç†æœåŠ¡ç«¯æ¥å£çš„åŠ¨æ€ä»£ç†å¯¹è±¡
 	@SuppressWarnings("unchecked")
 	public static <T> T getRemoteProxyObj(Class serviceInterface,InetSocketAddress address) {
 		/*
 		 * newProxyInstance(a,b,c);
-		 * a:Àà¼ÓÔØÆ÷£ºĞèÒª´úÀíÄÇ¸öÀà£¬¾ÍĞèÒª½«¸ÃÀàµÄ¼ÓÔØÆ÷´«ÈëµÚÒ»¸ö²ÎÊıÖĞ
-		 * b:ĞèÒª´úÀíµÄ¶ÔÏó¾ß±¸ÄÄĞ©·½·¨ £¬·½·¨·ÅÓÚ½Ó¿ÚÖĞ£¬Òò´ËµÚ¶ş¸ö²ÎÊı·Å½Ó¿Ú
-		 * 		javaÎªµ¥¼Ì³É£¬¶àÊµÏÖ£¬ËùÒÔ´æÔÚ¶à¸ö½Ó¿ÚÇé¿ö£¬ÎªÁË²¹È«Óï·¨£¬´«ÈëÒ»¸öÊı×éÀàĞÍµÄ²ÎÊı
+		 * a:ç±»åŠ è½½å™¨ï¼šéœ€è¦ä»£ç†é‚£ä¸ªç±»ï¼Œå°±éœ€è¦å°†è¯¥ç±»çš„åŠ è½½å™¨ä¼ å…¥ç¬¬ä¸€ä¸ªå‚æ•°ä¸­
+		 * b:éœ€è¦ä»£ç†çš„å¯¹è±¡å…·å¤‡å“ªäº›æ–¹æ³• ï¼Œæ–¹æ³•æ”¾äºæ¥å£ä¸­ï¼Œå› æ­¤ç¬¬äºŒä¸ªå‚æ•°æ”¾æ¥å£
+		 * 		javaä¸ºå•ç»§æˆï¼Œå¤šå®ç°ï¼Œæ‰€ä»¥å­˜åœ¨å¤šä¸ªæ¥å£æƒ…å†µï¼Œä¸ºäº†è¡¥å…¨è¯­æ³•ï¼Œä¼ å…¥ä¸€ä¸ªæ•°ç»„ç±»å‹çš„å‚æ•°
 		 */
 		return (T)Proxy.newProxyInstance(serviceInterface.getClassLoader(), new Class<?>[]{serviceInterface}, new InvocationHandler() {
 			
-			// proxy:´úÀíµÄ¶ÔÏó	method£º´úÀíµÄ·½·¨	args£º´úÀíµÄ²ÎÊı
+			// proxy:ä»£ç†çš„å¯¹è±¡	methodï¼šä»£ç†çš„æ–¹æ³•	argsï¼šä»£ç†çš„å‚æ•°
 			@Override
 			public Object invoke(Object proxy, Method method, Object[] args){
 				Socket socket = null;
 				ObjectOutputStream out = null;
 				ObjectInputStream in = null;
 				try {
-					// ¿Í»§¶ËÏò·şÎñ¶Ë·¢ËÍÇëÇó
+					// å®¢æˆ·ç«¯å‘æœåŠ¡ç«¯å‘é€è¯·æ±‚
 					socket = new Socket();
-					// ½¨Á¢Á¬½Ó  address °üº¬ÁËIP+¶Ë¿Ú
+					// å»ºç«‹è¿æ¥  address åŒ…å«äº†IP+ç«¯å£
 					socket.connect(address);
 					out = new ObjectOutputStream(socket.getOutputStream());
-					// ¿Í»§¶Ë·¢ËÍÇëÇó
-					// ·¢ËÍ½Ó¿Ú
+					// å®¢æˆ·ç«¯å‘é€è¯·æ±‚
+					// å‘é€æ¥å£
 					out.writeUTF(serviceInterface.getName());
-					// ·¢ËÍ½Ó¿ÚµÄ·½·¨Ãû
+					// å‘é€æ¥å£çš„æ–¹æ³•å
 					out.writeUTF(method.getName());
-					// ·¢ËÍ·½·¨µÄ²ÎÊıÀàĞÍ 	²ÎÊıÀàĞÍ²»È·¶¨£¬ËùÒÔÓÃÍ¨ÓÃµÄobject
+					// å‘é€æ–¹æ³•çš„å‚æ•°ç±»å‹ 	å‚æ•°ç±»å‹ä¸ç¡®å®šï¼Œæ‰€ä»¥ç”¨é€šç”¨çš„object
 					out.writeObject(method.getParameterTypes());
-					// ·¢ËÍ·½·¨²ÎÊı
+					// å‘é€æ–¹æ³•å‚æ•°
 					out.writeObject(args);
 					
-					// »ñÈ¡·şÎñ¶ËÏìÓ¦
+					// è·å–æœåŠ¡ç«¯å“åº”
 					in = new ObjectInputStream(socket.getInputStream());
 					return in.readObject(); 
 				} catch (IOException e) {

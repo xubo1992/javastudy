@@ -4,22 +4,22 @@ public class Test {
 
 	public static void main(String[] args) {
 		/*
-		 * Éú³É¶şÎ¬ÂëµÄÂ·¾¶
-		 * ¶şÎ¬ÂëÖĞµÄ´æ´¢ĞÅÏ¢(ÎÄ×ÖĞÅÏ¢£¬ÍøÕ¾ĞÅÏ¢µÈ)
+		 * ç”ŸæˆäºŒç»´ç çš„è·¯å¾„
+		 * äºŒç»´ç ä¸­çš„å­˜å‚¨ä¿¡æ¯(æ–‡å­—ä¿¡æ¯ï¼Œç½‘ç«™ä¿¡æ¯ç­‰)
 		 */
-		String imgPath = "src/com/xubo/QRCode/¶şÎ¬Âë.png";
-		String content = "helloworldÄãºÃ";
+		String imgPath = "src/com/xubo/QRCode/äºŒç»´ç .png";
+		String content = "helloworldä½ å¥½";
 		
 		/*
-		 * Éú³É¶şÎ¬Âë£º
-		 * 	1¡¢¼ÓÃÜ£º½«ÄÚÈİ·ÅÈë¶şÎ¬Âë
-		 * 	2¡¢½âÃÜ£º½«¶şÎ¬ÂëµÄĞÅÏ¢½âÎö³öÀ´
+		 * ç”ŸæˆäºŒç»´ç ï¼š
+		 * 	1ã€åŠ å¯†ï¼šå°†å†…å®¹æ”¾å…¥äºŒç»´ç 
+		 * 	2ã€è§£å¯†ï¼šå°†äºŒç»´ç çš„ä¿¡æ¯è§£æå‡ºæ¥
 		 */
-		// ¼ÓÃÜ
+		// åŠ å¯†
 		QRCodeUtil codeUtil = new QRCodeUtil();
 		codeUtil.encodeQRCode(content, imgPath, "png", 17);
-		// ½âÃÜ
-		String decodeQRCode = codeUtil.decodeQRCode("src/com/xubo/QRCode/¶şÎ¬Âë.png");
+		// è§£å¯†
+		String decodeQRCode = codeUtil.decodeQRCode("src/com/xubo/QRCode/äºŒç»´ç .png");
 		System.out.println(decodeQRCode);
 	}
 }

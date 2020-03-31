@@ -16,17 +16,17 @@ import jp.sourceforge.qrcode.data.QRCodeImage;
 
 public class QRCodeUtil {
 
-	// ¼ÓÃÜ: ÎÄ×ÖĞÅÏ¢ -> ¶şÎ¬Âë
+	// åŠ å¯†: æ–‡å­—ä¿¡æ¯ -> äºŒç»´ç 
 	/*
-	 * ²ÎÊıËµÃ÷£º
-	 * 		content  -> ÎÄ×ÖÄÚÈİ
-	 * 		impPath  -> ±£´æµÄÎ»ÖÃ
-	 * 		impType  -> ÎÄ¼şÀàĞÍ
-	 * 		size	 -> Í¼Æ¬µÄ³ß´ç
+	 * å‚æ•°è¯´æ˜ï¼š
+	 * 		content  -> æ–‡å­—å†…å®¹
+	 * 		impPath  -> ä¿å­˜çš„ä½ç½®
+	 * 		impType  -> æ–‡ä»¶ç±»å‹
+	 * 		size	 -> å›¾ç‰‡çš„å°ºå¯¸
 	 */
 	public void encodeQRCode(String content,String imgPath,String impType,int size) {
 		File file = new File(imgPath);
-		// ÄÚ´æÖĞµÄÍ¼Æ¬
+		// å†…å­˜ä¸­çš„å›¾ç‰‡
 		BufferedImage image = qRcodeCommon(content,impType,size);
 		try {
 			ImageIO.write(image,impType, file);
@@ -35,29 +35,29 @@ public class QRCodeUtil {
 		}
 	}
 	/*
-	 * ²úÉúÒ»¸ö¶şÎ¬ÂëµÄBufferedImage
+	 * äº§ç”Ÿä¸€ä¸ªäºŒç»´ç çš„BufferedImage
 	 */
 	public BufferedImage qRcodeCommon(String content,String impType,int size) {
 		BufferedImage image = null;
-		// ×Ö·û´® -->boolean[][]
+		// å­—ç¬¦ä¸² -->boolean[][]
 		Qrcode qrcode = new Qrcode();
-		// ÉèÖÃ¶şÎ¬ÂëµÄÈİ´íÂÊ 7% L->M->Q->H 30% Èİ´íÂÊÔ½¸ß¿É´æ´¢µÄĞÅÏ¢Ô½ÉÙ£¬µ«¶şÎ¬ÂëÇåÎú¶ÈÒªÇóÔ½Ğ¡
+		// è®¾ç½®äºŒç»´ç çš„å®¹é”™ç‡ 7% L->M->Q->H 30% å®¹é”™ç‡è¶Šé«˜å¯å­˜å‚¨çš„ä¿¡æ¯è¶Šå°‘ï¼Œä½†äºŒç»´ç æ¸…æ™°åº¦è¦æ±‚è¶Šå°
 		qrcode.setQrcodeErrorCorrect('M'); 
-		// ¿É´æ·ÅµÄĞÅÏ¢ÀàĞÍ£¬N£ºÊı×Ö£¬A£ºÊı×Ö+A-Z	B:ËùÓĞ
+		// å¯å­˜æ”¾çš„ä¿¡æ¯ç±»å‹ï¼ŒNï¼šæ•°å­—ï¼ŒAï¼šæ•°å­—+A-Z	B:æ‰€æœ‰
 		qrcode.setQrcodeEncodeMode('B');
-		// ³ß´ç£ºÈ¡Öµ·¶Î§£º1-40
+		// å°ºå¯¸ï¼šå–å€¼èŒƒå›´ï¼š1-40
 		qrcode.setQrcodeVersion(size);
-		// ½«content ±äÎªÁËÒ»¸ö¶şÎ¬×Ö½ÚÊı×é
+		// å°†content å˜ä¸ºäº†ä¸€ä¸ªäºŒç»´å­—èŠ‚æ•°ç»„
 		boolean[][] bs = qrcode.calQrcode(content.getBytes());
 		int imgSize = 67 + 12 * (size - 1);
 		
 		image = new BufferedImage(imgSize, imgSize, BufferedImage.TYPE_INT_RGB);
-		// ´´½¨»­°å
+		// åˆ›å»ºç”»æ¿
 		Graphics2D gs = image.createGraphics();
 		
-		gs.setBackground(Color.WHITE);// ÉèÖÃ±³¾°É«Îª°×É«
-		gs.clearRect(0, 0, imgSize, imgSize);// ³õÊ¼»¯Ãæ°å´óĞ¡	x¡¢yÖá£¬Ãæ°åµÄ¿íÓë¸ß 
-		gs.setColor(Color.BLACK);// ÉèÖÃÃæ°åÉÏµÄ»­±ÊÑÕÉ«
+		gs.setBackground(Color.WHITE);// è®¾ç½®èƒŒæ™¯è‰²ä¸ºç™½è‰²
+		gs.clearRect(0, 0, imgSize, imgSize);// åˆå§‹åŒ–é¢æ¿å¤§å°	xã€yè½´ï¼Œé¢æ¿çš„å®½ä¸é«˜ 
+		gs.setColor(Color.BLACK);// è®¾ç½®é¢æ¿ä¸Šçš„ç”»ç¬”é¢œè‰²
 		int pixoff = 2;
 		for(int i = 0; i < bs.length; i++) {
 			for( int j = 0; j < bs.length; j++) {
@@ -73,12 +73,12 @@ public class QRCodeUtil {
 			e.printStackTrace();
 		}
 		gs.drawImage(logo, imgSize/5*2, imgSize/5*2, imgSize/5*1, imgSize/5*1,null);
-		gs.dispose();// ÊÍ·Å¿Õ¼ä
+		gs.dispose();// é‡Šæ”¾ç©ºé—´
 		image.flush();
 		return image;
 	}
 
-	// ½âÃÜ
+	// è§£å¯†
 	public String decodeQRCode(String imgPath) {
 		BufferedImage image = null;
 		try {

@@ -24,7 +24,7 @@ public class SimpleDemo01 {
 //		demo06();
 		demo07();
 	}
-	// Map¼¯ºÏ×ªJSon¶ÔÏó
+	// Mapé›†åˆè½¬JSonå¯¹è±¡
 	public static void demo01() {
 		Map<String,String> map = new HashMap<>();
 		map.put("s01", "zs");
@@ -34,21 +34,21 @@ public class SimpleDemo01 {
 		System.out.println(jObject);
 	}
 	
-	// javaBean×ªJSon¶ÔÏó
+	// javaBeanè½¬JSonå¯¹è±¡
 	public static void demo02() {
 		Person person = new Person("zs",23,new Address("fs","hb"));
 		JSONObject jObject = new JSONObject(person);
 		System.out.println(jObject);
 	}
 
-	// String×ªJSon¶ÔÏó
+	// Stringè½¬JSonå¯¹è±¡
 	public static void demo03() {
 		String str = "{\"name\":\"zs\",\"age\":24,\"Address\":{\"workAddress\":\"fs\",\"homeAddress\":\"hb\"}}";
 		JSONObject jObject = new JSONObject(str);
 		System.out.println(jObject);
 	}
 	
-	// ½«Ò»¸öÎÄ¼ş×ªJSon¶ÔÏó ·½Ê½Ò»
+	// å°†ä¸€ä¸ªæ–‡ä»¶è½¬JSonå¯¹è±¡ æ–¹å¼ä¸€
 	public void demo04() throws IOException {
 		InputStream in = super.getClass().getClassLoader().getResourceAsStream("com/xubo/json/per.json");
 		byte[] bs = new byte[10];
@@ -63,7 +63,7 @@ public class SimpleDemo01 {
 		System.out.println(jObject);
 	}
 	
-	// ½«Ò»¸öÎÄ¼ş×ªJSon¶ÔÏó ·½Ê½¶ş
+	// å°†ä¸€ä¸ªæ–‡ä»¶è½¬JSonå¯¹è±¡ æ–¹å¼äºŒ
 	public static void demo05(){
 		String str2 = "";
 		try {
@@ -76,7 +76,7 @@ public class SimpleDemo01 {
 		System.out.println(jObject);
 	}
 
-	// Éú³ÉJSonÎÄ¼ş
+	// ç”ŸæˆJSonæ–‡ä»¶
 	public static void demo06(){
 		try {
 			Map<String,Object> map = new HashMap<String, Object>();
@@ -96,7 +96,7 @@ public class SimpleDemo01 {
 	}
 	
 
-	// String¸ñÊ½µÄJSONÊı×é×ªJSonÊı×é
+	// Stringæ ¼å¼çš„JSONæ•°ç»„è½¬JSonæ•°ç»„
 	public static void demo07(){
 		String str = "["
 					+ "{\"name\":\"zs\",\"age\":23},"

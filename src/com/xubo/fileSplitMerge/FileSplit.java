@@ -9,29 +9,29 @@ import java.util.Properties;
 
 public class FileSplit {
 	public static void main(String[] args) {
-		//Ô­ÎÄ¼ş
+		//åŸæ–‡ä»¶
 		File resfile = new File("D:\\apache-tomcat-7.0.92-windows-x64.zip");
-		//²ğ·ÖºóµÄÎÄ¼ş¼Ğ
+		//æ‹†åˆ†åçš„æ–‡ä»¶å¤¹
 		File spFile = new File("D:\\cs");
 		FileSplit(resfile,spFile);
 		
 	}
 	public static void FileSplit(File resfile,File spFile) {
 		if(!resfile.exists()) {
-			System.out.println("Î´ÕÒµ½Ô­ÎÄ¼ş");
+			System.out.println("æœªæ‰¾åˆ°åŸæ–‡ä»¶");
 			return;
 		}
 		if(!spFile.exists()) {
 			spFile.mkdirs();
 		}
 		try {
-			//¶¨ÒåÒ»¸öÊäÈëÁ÷£¬N¸öÊä³öÁ÷
+			//å®šä¹‰ä¸€ä¸ªè¾“å…¥æµï¼ŒNä¸ªè¾“å‡ºæµ
 			FileInputStream in = new FileInputStream(resfile);
 			FileOutputStream out = null;
 			byte[] bs = new byte[1024*1024];
-			//¶¨Òå²ğ·ÖºóÎÄ¼şÃû³Æ
+			//å®šä¹‰æ‹†åˆ†åæ–‡ä»¶åç§°
 			int count = 1;
-			//¶¨Òå·¢ËÍÎÄ¼ş³¤¶È
+			//å®šä¹‰å‘é€æ–‡ä»¶é•¿åº¦
 			int len = -1;
 			while((len = in.read(bs)) != -1) {
 				out = new FileOutputStream(new File(spFile,count+".sp"));
@@ -39,13 +39,13 @@ public class FileSplit {
 				out.flush();
 				count ++ ;
 			}
-			System.out.println("ÎÄ¼ş²ğ·ÖÍê±Ï£¡");
-			// ½«ÎÄ¼ş¸öÊı¼°ÎÄ¼şÃûĞ´ÈëÅäÖÃÎÄ¼şÖĞ
+			System.out.println("æ–‡ä»¶æ‹†åˆ†å®Œæ¯•ï¼");
+			// å°†æ–‡ä»¶ä¸ªæ•°åŠæ–‡ä»¶åå†™å…¥é…ç½®æ–‡ä»¶ä¸­
 			out = new FileOutputStream(new File(spFile,count+".config"));
 			Properties properties = new Properties();
 			properties.setProperty("fileName", resfile.getName());
 			properties.setProperty("count",String.valueOf(count-1));
-			properties.store(out, "¼Ù×°ÓĞĞ©×¢ÊÍ£¡");
+			properties.store(out, "å‡è£…æœ‰äº›æ³¨é‡Šï¼");
 			out.close();
 			in.close();
 		} catch (FileNotFoundException e) {

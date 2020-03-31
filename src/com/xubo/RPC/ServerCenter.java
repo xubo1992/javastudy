@@ -12,13 +12,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /*
- * ÊµÏÖ·şÎñÖĞĞÄ½Ó¿Ú
+ * å®ç°æœåŠ¡ä¸­å¿ƒæ¥å£
  */
 public class ServerCenter implements Server{
 	private static HashMap<String,Class> serviceRegister = new HashMap<String,Class>();
 	private static int port;
-	// Á¬½Ó³Ø:Á¬½Ó³ØÖĞ´æÔÚ¶à¸öÁ¬½Ó¶ÔÏó£¬Ã¿¸öÁ¬½Ó¶ÔÏó¶¼ÄÜ´¦ÀíÒ»¸ö¶ÔÏó
-	// »ñÈ¡´¦ÀíÆ÷¸öÊı£¬Éú²úÒ»¸öÁ¬½Ó³Ø
+	// è¿æ¥æ± :è¿æ¥æ± ä¸­å­˜åœ¨å¤šä¸ªè¿æ¥å¯¹è±¡ï¼Œæ¯ä¸ªè¿æ¥å¯¹è±¡éƒ½èƒ½å¤„ç†ä¸€ä¸ªå¯¹è±¡
+	// è·å–å¤„ç†å™¨ä¸ªæ•°ï¼Œç”Ÿäº§ä¸€ä¸ªè¿æ¥æ± 
 	private static ExecutorService executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors()); 
 	
 	private static boolean isRunning = false;
@@ -28,12 +28,12 @@ public class ServerCenter implements Server{
 		this.port = port;
 	}
 	
-	// ¿ªÆô·şÎñ
+	// å¼€å¯æœåŠ¡
 	@Override
 	public void start() {
 		ServerSocket server = null;
 		try {
-			// ¿ªÆô¶Ë¿ÚÎª7777µÄ·şÎñ
+			// å¼€å¯ç«¯å£ä¸º7777çš„æœåŠ¡
 			server = new ServerSocket();
 			server.bind(new InetSocketAddress(port));
 		} catch (IOException e) {
@@ -43,12 +43,12 @@ public class ServerCenter implements Server{
 		while(true) {
 			Socket socket = null;
 			try {
-				// µÈ´ı¿Í»§Á¬½Ó
+				// ç­‰å¾…å®¢æˆ·è¿æ¥
 				socket = server.accept();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			// Æô¶¯Ïß³Ì 
+			// å¯åŠ¨çº¿ç¨‹ 
 			executorService.execute(new ServiceTask(socket)); 
 		}
 	}
@@ -59,14 +59,14 @@ public class ServerCenter implements Server{
 		executorService.shutdown();
 	}
 	
-	// ×¢²á½Ó¿ÚÊµÏÖ
+	// æ³¨å†Œæ¥å£å®ç°
 	@Override
 	public void register(Class service,Class serverImpl) {
 		serviceRegister.put(service.getName(), serverImpl);
 		
 	}
 	
-	// ´¦Àí¿Í»§¶ËÇëÇó
+	// å¤„ç†å®¢æˆ·ç«¯è¯·æ±‚
 	private static class ServiceTask implements Runnable{
 		private Socket socket;
 		public ServiceTask(Socket socket) {
@@ -78,22 +78,22 @@ public class ServerCenter implements Server{
 			ObjectInputStream in = null;
 			ObjectOutputStream out = null;
 			try {
-				System.out.println("Á¬½Ó³É¹¦");
-				// ½ÓÊÕ¿Í»§¶ËÇëÇó	½ÓÊÕË³ĞòÒª±£³ÖÓë¿Í»§·¢ËÍË³ĞòÒ»ÖÂ
+				System.out.println("è¿æ¥æˆåŠŸ");
+				// æ¥æ”¶å®¢æˆ·ç«¯è¯·æ±‚	æ¥æ”¶é¡ºåºè¦ä¿æŒä¸å®¢æˆ·å‘é€é¡ºåºä¸€è‡´
 				in = new ObjectInputStream(socket.getInputStream());
-				// ½Ó¿ÚÃû
+				// æ¥å£å
 				String serviceName = in.readUTF();
-				// ½Ó¿Ú·½·¨
+				// æ¥å£æ–¹æ³•
 				String methodName = in.readUTF();
-				// ²ÎÊıÀàĞÍ
+				// å‚æ•°ç±»å‹
 				Class[] parameters = (Class[])in.readObject();
-				// ²ÎÊı
+				// å‚æ•°
 				Object[] args = (Object[])in.readObject();
 				
-				// ´¦Àí¿Í»§¶ËÇëÇó
+				// å¤„ç†å®¢æˆ·ç«¯è¯·æ±‚
 				Class serviceClass = serviceRegister.get(serviceName);
 				Method method = serviceClass.getMethod(methodName, parameters);
-				// ·¢ËÍ·µ»Ø½á¹û
+				// å‘é€è¿”å›ç»“æœ
 				Object result = method.invoke(serviceClass.newInstance(), args);
 				out = new ObjectOutputStream(socket.getOutputStream());
 				out.writeObject(result);

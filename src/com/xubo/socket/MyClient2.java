@@ -9,7 +9,7 @@ import java.net.UnknownHostException;
 
 public class MyClient2 {
 	/*
-	 * Í¨¹ısocket½ÓÊÕÎÄ¼ş£º¿Í»§¶Ë
+	 * é€šè¿‡socketæ¥æ”¶æ–‡ä»¶ï¼šå®¢æˆ·ç«¯
 	 */
 	public static void main(String[] args) {
 		try {
@@ -17,19 +17,19 @@ public class MyClient2 {
 			InputStream in = socket.getInputStream();
 			File file = new File("D:\\aaa.jar");
 			if(!file.exists()) {
-				//ÈôÃ»ÓĞ¸ÃÎÄ¼şÔò´´½¨
+				//è‹¥æ²¡æœ‰è¯¥æ–‡ä»¶åˆ™åˆ›å»º
 				file.createNewFile();
 			}
-			// ½«´ËÎÄ¼ş´ÓÄÚ´æĞ´ÈëÓ²ÅÌ
+			// å°†æ­¤æ–‡ä»¶ä»å†…å­˜å†™å…¥ç¡¬ç›˜
 			FileOutputStream out = new FileOutputStream(file);
 			byte[] bs = new byte[100];
 			int len = -1;
-			//²»¶Ï´ÓÄÚ´æÖĞ¶ÁÈ¡ÎÄ¼ş
+			//ä¸æ–­ä»å†…å­˜ä¸­è¯»å–æ–‡ä»¶
 			while((len = in.read(bs)) != -1) {
-				//½«ÄÚ´æÖĞ¶ÁµÄÎÄ¼ş²»¶ÏĞ´ÈëÓ²ÅÌÖĞ
+				//å°†å†…å­˜ä¸­è¯»çš„æ–‡ä»¶ä¸æ–­å†™å…¥ç¡¬ç›˜ä¸­
 				out.write(bs, 0, len);
 			}
-			System.out.println("ÎÄ¼ş½ÓÊÕÍê³É");
+			System.out.println("æ–‡ä»¶æ¥æ”¶å®Œæˆ");
 			out.close();
 			in.close();
 			socket.close();

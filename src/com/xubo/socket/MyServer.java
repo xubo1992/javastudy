@@ -11,9 +11,9 @@ public class MyServer {
 	public static void main(String[] args) throws IOException {
 		ServerSocket serverSocket = new ServerSocket(9999);
 		Socket socket = serverSocket.accept();
-		System.out.println("Á¬½Ó³É¹¦");
+		System.out.println("è¿æ¥æˆåŠŸ");
 		PrintWriter out = new PrintWriter(new OutputStreamWriter(socket.getOutputStream(),"UTF-8"),true);
-		String str = "·şÎñ¶Ë£º¿Í»§¶ËÄãºÃ";
+		String str = "æœåŠ¡ç«¯ï¼šå®¢æˆ·ç«¯ä½ å¥½";
 		out.println(str);
 		socket.close();
 	}

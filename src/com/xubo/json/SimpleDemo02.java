@@ -15,7 +15,7 @@ public class SimpleDemo02 {
 		demo02();
 	}
 	
-	// map转jsonArray
+	// map杞琷sonArray
 	public static void demo01() {
 		Map<String,String> map = new HashMap<>();
 		map.put("s01", "zs");
@@ -26,7 +26,7 @@ public class SimpleDemo02 {
 		System.out.println(jArray);
 	}
 
-	// jsonArray转map
+	// jsonArray杞琺ap
 	public static void demo02() {
 		String str = "[{\"name\":\"zs\",\"age\":23},{\"classname\":\"lq\",\"classno\":\"01\"},{\"shcoolAddress\":\"hb\",\"workAddress\":\"fz\"}]";
 		JSONArray jArray = new JSONArray();
@@ -35,7 +35,7 @@ public class SimpleDemo02 {
 		for(int i = 0; i < jArray.size(); i++) {
 			Object o = jArray.get(i);
 			net.sf.json.JSONObject json = (net.sf.json.JSONObject)o;
-			// 获取json中每一个key
+			// 鑾峰彇json涓瘡涓�涓猭ey
 			Set<String> keys = json.keySet();
 			for(String key : keys) {
 				Object value = json.get(key);

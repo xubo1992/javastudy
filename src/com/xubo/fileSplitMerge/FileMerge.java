@@ -10,19 +10,19 @@ import java.util.Properties;
 public class FileMerge {
 
 	public static void main(String[] args) {
-		// ²ğ·ÖºóÅäÖÃÎÄ¼şÂ·¾¢
+		// æ‹†åˆ†åé…ç½®æ–‡ä»¶è·¯åŠ²
 		String filePath = "D:\\cs\\12.config";
-		// ºÏ²¢Ö»ÄÜÊÔÓÃÎå´Î
-		// ÅĞ¶ÏÊÇ·ñÊÇµÚÒ»´ÎÊ¹ÓÃ
+		// åˆå¹¶åªèƒ½è¯•ç”¨äº”æ¬¡
+		// åˆ¤æ–­æ˜¯å¦æ˜¯ç¬¬ä¸€æ¬¡ä½¿ç”¨
 		File file = new File("D:\\cs\\useCount.propreties");
 		Properties properties = new Properties();
 		int count = 0;
 		try {
 			if (!file.exists()) {
-				//µÚÒ»´ÎÊ¹ÓÃ
+				//ç¬¬ä¸€æ¬¡ä½¿ç”¨
 				file.createNewFile();
 			}else {
-				//·ÇµÚÒ»´ÎÊ¹ÓÃ
+				//éç¬¬ä¸€æ¬¡ä½¿ç”¨
 				properties.load(new FileInputStream(file));
 				count = Integer.valueOf((String)properties.get("useCount"));
 			}
@@ -30,9 +30,9 @@ public class FileMerge {
 				mergeFile(filePath);
 				count++;
 				properties.setProperty("useCount", String.valueOf(count));
-				properties.store(new FileOutputStream(file), "¼ÇÂ¼ºÏ²¢ÎÄ¼şµÄÊ¹ÓÃ´ÎÊı");
+				properties.store(new FileOutputStream(file), "è®°å½•åˆå¹¶æ–‡ä»¶çš„ä½¿ç”¨æ¬¡æ•°");
 			} else {
-				System.out.println("ÒÑ³¬¹ıÊ¹ÓÃ´ÎÊı£¬Çë¸¶·ÑÊ¹ÓÃ£¡");
+				System.out.println("å·²è¶…è¿‡ä½¿ç”¨æ¬¡æ•°ï¼Œè¯·ä»˜è´¹ä½¿ç”¨ï¼");
 			}
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -42,15 +42,15 @@ public class FileMerge {
 
 	}
 	
-	// ºÏ²¢²ğ·ÖºóµÄÎÄ¼ş
+	// åˆå¹¶æ‹†åˆ†åçš„æ–‡ä»¶
 	public static void mergeFile(String filePath) {
 		Properties properties = new Properties();
 		try {
-			// »ñÈ¡ÅäÖÃÎÄ¼şĞÅÏ¢
+			// è·å–é…ç½®æ–‡ä»¶ä¿¡æ¯
 			properties.load(new FileInputStream(new File(filePath)));
 			String fileName = (String) properties.get("fileName");
 			int count = Integer.valueOf((String) properties.get("count"));
-			// Ğ´ÈëºóµÄÎÄ¼ş
+			// å†™å…¥åçš„æ–‡ä»¶
 			File file = new File("D:\\cs\\", fileName);
 			if (!file.exists()) {
 				file.createNewFile();
@@ -65,7 +65,7 @@ public class FileMerge {
 					out.write(bt, 0, len);
 				}
 			}
-			System.out.println("ÎÄ¼şºÏ²¢Íê±Ï£¡");
+			System.out.println("æ–‡ä»¶åˆå¹¶å®Œæ¯•ï¼");
 			out.close();
 			in.close();
 		} catch (FileNotFoundException e) {

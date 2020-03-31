@@ -5,8 +5,8 @@ import java.lang.reflect.Field;
 public class PropertyUtil {
 	
 	/*
-	 * ¿ÉÒÔ¸øÈÎºÎ¶ÔÏóµÄÈÎºÎÊôĞÔ¸³Öµ
-	 * ²ÎÊı£ºObject ¸³ÖµµÄ¶ÔÏó	propertyName ¸³ÖµµÄÊôĞÔ		obj2 ¸³µÄ¾ßÌåÖµ
+	 * å¯ä»¥ç»™ä»»ä½•å¯¹è±¡çš„ä»»ä½•å±æ€§èµ‹å€¼
+	 * å‚æ•°ï¼šObject èµ‹å€¼çš„å¯¹è±¡	propertyName èµ‹å€¼çš„å±æ€§		obj2 èµ‹çš„å…·ä½“å€¼
 	 */
 	public static void setProperty(Object obj,String propertyName,Object value) {
 		try {

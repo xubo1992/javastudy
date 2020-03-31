@@ -17,21 +17,21 @@ public class MyDownload implements Runnable{
 	public void run() {
 		try {
 			OutputStream out = socket.getOutputStream();
-			//×¼±¸´ı´«ËÍµÄÎÄ¼ş
+			//å‡†å¤‡å¾…ä¼ é€çš„æ–‡ä»¶
 			File file = new File("D:\\commons-net-ftp-2.0.jar");
 			if(!file.exists()) {
-				System.out.println("Î´ÕÒµ½Ö¸¶¨ÎÄ¼ş");
+				System.out.println("æœªæ‰¾åˆ°æŒ‡å®šæ–‡ä»¶");
 				return;
 			}
-			//¶¨Òå»º´æÇøÎª100×Ö½Ú
+			//å®šä¹‰ç¼“å­˜åŒºä¸º100å­—èŠ‚
 			byte[] bs = new byte[100];
-			// ½«´ËÎÄ¼ş´ÓÓ²ÅÌ¶ÁÈëÄÚ´æ
+			// å°†æ­¤æ–‡ä»¶ä»ç¡¬ç›˜è¯»å…¥å†…å­˜
 	        FileInputStream fileInputStream = new FileInputStream(file);
 			int len = -1;
 			while((len = fileInputStream.read(bs)) != -1 ){
 				out.write(bs,0,len);
 	        }
-			System.out.println("ÎÄ¼ş·¢ËÍÍê±Ï£¡");
+			System.out.println("æ–‡ä»¶å‘é€å®Œæ¯•ï¼");
 			fileInputStream.close();
 			out.close();
 			socket.close();

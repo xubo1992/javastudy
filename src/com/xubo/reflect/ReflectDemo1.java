@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 /*
- * ·´Éä
+ * åå°„
  */
 public class ReflectDemo1 {
 
@@ -21,29 +21,29 @@ public class ReflectDemo1 {
 	
 	public static void getClass1() {
 		/*
-		 * ·´ÉäµÄÈıÖÖ·½Ê½£º
-		 * 		1¡¢Class.forName("È«ÀàÃû")
-		 * 		2¡¢ÀàÃû.class
-		 * 		3¡¢¶ÔÏó.getClass
+		 * åå°„çš„ä¸‰ç§æ–¹å¼ï¼š
+		 * 		1ã€Class.forName("å…¨ç±»å")
+		 * 		2ã€ç±»å.class
+		 * 		3ã€å¯¹è±¡.getClass
 		 */
 		try {
-			// 1.Class.forName("È«ÀàÃû")
+			// 1.Class.forName("å…¨ç±»å")
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
 			System.out.println(class1);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		// 2.ÀàÃû.class
+		// 2.ç±»å.class
 		Class<?> class2 = Person.class;
 		System.out.println(class2);
 		
-		//3.¶ÔÏó.getClass
+		//3.å¯¹è±¡.getClass
 		Person person = new Person();
 		Class<?> class3 = person.getClass();
 		System.out.println(class3);
 	}
 	
-	//»ñÈ¡·½·¨
+	//è·å–æ–¹æ³•
 	public static void getMethods() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
@@ -53,20 +53,20 @@ public class ReflectDemo1 {
 				System.out.println(method);
 				count++;
 			}
-			System.out.println("ÕâÊÇËùÓĞµÄ¹«ÓĞ·½·¨(º¬¸¸Àà¡¢½Ó¿Ú²»º¬Ë½ÓĞµÄ)¹²£º"+count);
+			System.out.println("è¿™æ˜¯æ‰€æœ‰çš„å…¬æœ‰æ–¹æ³•(å«çˆ¶ç±»ã€æ¥å£ä¸å«ç§æœ‰çš„)å…±ï¼š"+count);
 			Method[] methods2 = class1.getDeclaredMethods();
 			int count2 = 0;
 			for(Method method:methods2) {
 				System.out.println(method);
 				count2++;
 			}
-			System.out.println("ÕâÊÇ¸ÃÀàµÄËùÓĞ·½·¨(²»º¬¸¸Àà¡¢½Ó¿Úº¬Ë½ÓĞµÄ)¹²£º"+count2);
+			System.out.println("è¿™æ˜¯è¯¥ç±»çš„æ‰€æœ‰æ–¹æ³•(ä¸å«çˆ¶ç±»ã€æ¥å£å«ç§æœ‰çš„)å…±ï¼š"+count2);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	//»ñÈ¡½Ó¿Ú
+	//è·å–æ¥å£
 	public static void getInterfaces() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
@@ -79,7 +79,7 @@ public class ReflectDemo1 {
 		}
 	}
 	
-	// »ñÈ¡¸¸Àà
+	// è·å–çˆ¶ç±»
 	public static void getSupperClasss() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
@@ -90,7 +90,7 @@ public class ReflectDemo1 {
 		}
 	}
 	
-	// »ñÈ¡¹¹Ôì·½·¨
+	// è·å–æ„é€ æ–¹æ³•
 	public static void getConstructors() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
@@ -103,16 +103,16 @@ public class ReflectDemo1 {
 		}
 	}
 
-	// »ñÈ¡ÊôĞÔ
+	// è·å–å±æ€§
 	public static void getFields() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
-			System.out.println("»ñÈ¡¸ÃÀà¹«ÓĞµÄÊôĞÔ");
+			System.out.println("è·å–è¯¥ç±»å…¬æœ‰çš„å±æ€§");
 			Field[] fields = class1.getFields();
 			for(Field field : fields) {
 				System.out.println(field);
 			}
-			System.out.println("»ñÈ¡¸ÃÀàËùÓĞµÄÊôĞÔ");
+			System.out.println("è·å–è¯¥ç±»æ‰€æœ‰çš„å±æ€§");
 			Field[] fields2 = class1.getDeclaredFields();
 			for(Field field : fields2) {
 				System.out.println(field);
@@ -122,7 +122,7 @@ public class ReflectDemo1 {
 		}
 	}
 	
-	// »ñÈ¡µ±Ç°·´ÉäËù´ú±íÀà£¨½Ó¿Ú£©µÄ¶ÔÏóÊµÀı
+	// è·å–å½“å‰åå°„æ‰€ä»£è¡¨ç±»ï¼ˆæ¥å£ï¼‰çš„å¯¹è±¡å®ä¾‹
 	public static void getInstances() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");

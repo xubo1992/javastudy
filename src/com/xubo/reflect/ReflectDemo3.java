@@ -18,16 +18,16 @@ public class ReflectDemo3 {
 	}
 	
 	/*
-	 *  ¶¯Ì¬¼ÓÔØÀàºÍ·½·¨
-	 *  ¸ù¾İÅäÖÃÎÄ¼şµÄÀàÃû¡¢·½·¨Ãû¶¯Ì¬µ÷ÓÃ
+	 *  åŠ¨æ€åŠ è½½ç±»å’Œæ–¹æ³•
+	 *  æ ¹æ®é…ç½®æ–‡ä»¶çš„ç±»åã€æ–¹æ³•ååŠ¨æ€è°ƒç”¨
 	 */
 	public static void demo1() {
 		Properties properties = new Properties();
 		try {
 			properties.load(new FileReader(new File("src/com/xubo/reflect/class.txt")));
-			// »ñÈ¡ÀàÃû
+			// è·å–ç±»å
 			String classname = (String)properties.get("classname");
-			// »ñÈ¡·½·¨Ãû
+			// è·å–æ–¹æ³•å
 			String methodname = (String)properties.get("methodname");
 			Class<?> class1 = Class.forName(classname);
 			Method method = class1.getDeclaredMethod(methodname);
@@ -42,8 +42,8 @@ public class ReflectDemo3 {
 		}
 	}
 	
-	// ·´Éä¿ÉÒÔÔ½¹ı·ºĞÍĞ£Ñé
-	//ËäÈ»¿ÉÒÔÍ¨¹ı·´Éä»ñÈ¡privateµÄÊôĞÔ·½·¨£¬Ò²¿ÉÒÔºöÂÔ·ºĞÍµÄĞ£Ñé£¬µ«Êµ¼Ê¿ª·¢ÖĞ²»½¨ÒéÕâÃ´×ö
+	// åå°„å¯ä»¥è¶Šè¿‡æ³›å‹æ ¡éªŒ
+	//è™½ç„¶å¯ä»¥é€šè¿‡åå°„è·å–privateçš„å±æ€§æ–¹æ³•ï¼Œä¹Ÿå¯ä»¥å¿½ç•¥æ³›å‹çš„æ ¡éªŒï¼Œä½†å®é™…å¼€å‘ä¸­ä¸å»ºè®®è¿™ä¹ˆåš
 	public static void demo2() {
 		ArrayList<Integer> list = new ArrayList<Integer>();
 		list.add(1);
@@ -63,7 +63,7 @@ public class ReflectDemo3 {
 		System.out.println(list);
 	}
 	
-	//Í¨¹ıÍòÄÜµÄ¹¤¾ß¸³Öµ
+	//é€šè¿‡ä¸‡èƒ½çš„å·¥å…·èµ‹å€¼
 	public static void demo3() {
 		Person ps = new Person();
 		PropertyUtil.setProperty(ps, "name", "zs");

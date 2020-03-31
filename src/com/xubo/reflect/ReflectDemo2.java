@@ -11,12 +11,12 @@ public class ReflectDemo2 {
 		demo3();
 	}
 	
-	// Í¨¹ı·´Éä¸øÀà¸³Öµ
+	// é€šè¿‡åå°„ç»™ç±»èµ‹å€¼
 	public static void demo1() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
 			Person per = (Person)class1.newInstance();
-			per.setName("ÕÅÈı");
+			per.setName("å¼ ä¸‰");
 			System.out.println(per.getName());
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
@@ -27,22 +27,22 @@ public class ReflectDemo2 {
 		}
 	}
 	
-	// Í¨¹ı·´Éäµ÷¹¹Ôì·½·¨
+	// é€šè¿‡åå°„è°ƒæ„é€ æ–¹æ³•
 	public static void demo2() {
 		try {
 			Class<?> class1 = Class.forName("com.xubo.reflect.Person");
-			// »ñÈ¡privateµÄÊôĞÔ
+			// è·å–privateçš„å±æ€§
 			Field idField = class1.getDeclaredField("age");
-			// ĞŞ¸ÄÊôĞÔµÄ·ÃÎÊÈ¨ÏŞ
+			// ä¿®æ”¹å±æ€§çš„è®¿é—®æƒé™
 			idField.setAccessible(true);
 			Person per = (Person)class1.newInstance();
 			idField.set(per, 2);
 			System.out.println(per.getAge());
-			// »ñÈ¡privateµÄÎŞ²Î·½·¨
+			// è·å–privateçš„æ— å‚æ–¹æ³•
 			Method method = class1.getDeclaredMethod("say",null);
 			method.setAccessible(true);
 			method.invoke(per, null);
-			// »ñÈ¡privateµÄÓĞ²Î·½·¨
+			// è·å–privateçš„æœ‰å‚æ–¹æ³•
 			Method method2 = class1.getDeclaredMethod("say2",String.class);
 			method2.setAccessible(true);
 			method2.invoke(per, "zs");
